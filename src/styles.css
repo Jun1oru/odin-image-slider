@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sliderContainer {
+    display: flex;
+    width: 600px;
+    height: 600px;
+    border: 3px solid black;
+}
+
+.imageFrame {
+    flex: 1;
+    border: 1px solid red;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: clip;
+}
+
+.image {
+    flex: 1;
+}
+.image[data-active="false"] {
+    flex: 0;
+}

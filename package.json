@@ -1,7 +1,7 @@
 {
-  "name": "template-repository",
-  "version": "1.0.1",
-  "description": "template repository",
+  "name": "odin-image-slider-junioru",
+  "version": "1.0.0",
+  "description": "odin-image-slider-junioru",
   "private": false,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
