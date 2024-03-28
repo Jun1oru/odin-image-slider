@@ -1,8 +1,56 @@
-* {
+*,
+*::after,
+*::before {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     user-select: none;
+}
+
+html {
+    font-size: 10px;
+}
+
+@media only screen and (min-width: 35.5em) {
+    html {
+        font-size: 12px;
+    }
+}
+
+@media only screen and (min-width: 48em) {
+    html {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (min-width: 64em) {
+    html {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (min-width: 80em) {
+    html {
+        font-size: 18px;
+    }
+}
+
+@media only screen and (min-width: 120em) {
+    html {
+        font-size: 20px;
+    }
+}
+
+@media only screen and (min-width: 160em) {
+    html {
+        font-size: 22px;
+    }
+}
+
+@media only screen and (min-width: 240em) {
+    html {
+        font-size: 24px;
+    }
 }
 
 body {
@@ -15,15 +63,15 @@ body {
 }
 
 .sliderContainer {
+    position: relative;
+
     display: flex;
-    width: 600px;
-    height: 600px;
-    border: 3px solid black;
+    width: 20rem;
+    height: 20rem;
 }
 
 .imageFrame {
     flex: 1;
-    border: 1px solid red;
 
     display: flex;
     justify-content: center;
@@ -31,13 +79,93 @@ body {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: clip;
+
+    position: relative;
 }
 
 .imageDiv {
+    height: 100%;
     flex: 1;
-    position: absolute;
+    display: none;
+
     opacity: 0;
 }
 .imageDiv[data-active="true"] {
+    display: block;
     opacity: 1;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sliderButton {
+    align-self: center;
+    position: absolute;
+    height: 2rem;
+    width: 2rem;
+    background-color: #333;
+    border-radius: 50%;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+#nextButton {
+    right: 0;
+    transform: translateX(150%);
+}
+
+#prevButton {
+    left: 0;
+    transform: translateX(-150%);
+}
+
+#nextButton::after,
+#prevButton::after {
+  content: '';
+  position: absolute;
+  border: solid white;
+  border-width: 0 0.2rem 0.2rem 0;
+  display: inline-block;
+  padding: 0.25rem;
+  width: 40%;
+  height: 40%;
+}
+
+#nextButton::after {
+    top: 50%;
+    right: 50%;
+    transform: translate(25%, -50%) rotate(-45deg);
+}
+
+#prevButton::after {
+    top: 50%;
+    right: 50%;
+    transform: translate(75%, -50%) rotate(135deg);
+}
+
+.sliderNav {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.imageDot {
+    display: inline-block;
+    height: 1rem;
+    width: 1rem;
+    border-radius: 50%;
+    border: 0.1rem #fff solid;
+    background-color: #333;
+    opacity: 0.8;
+    margin: 0 1rem 0 1rem;
+    cursor: pointer;
+}
+
+.imageDot[data-active="true"] {
+    background-color: #fff;
+    border: 0.1rem #333 solid;
 }
