@@ -33,9 +33,11 @@ body {
     text-overflow: clip;
 }
 
-.image {
+.imageDiv {
     flex: 1;
+    position: absolute;
+    opacity: 0;
 }
-.image[data-active="false"] {
-    flex: 0;
+.imageDiv[data-active="true"] {
+    opacity: 1;
 }
