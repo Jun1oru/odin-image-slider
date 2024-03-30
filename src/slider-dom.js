@@ -15,6 +15,8 @@ export function createSliderDom(slider) {
   nextButton.id = "nextButton";
   nextButton.addEventListener("click", () => {
     nextImage(slider);
+    clearInterval(interval);
+    interval = setInterval(nextImage, 5000, slider);
   });
 
   const prevButton = document.createElement("div");
@@ -27,8 +29,10 @@ export function createSliderDom(slider) {
     const imagesArr = Array.from(images);
     imagesArr.forEach((image) => {
       image.dataset.active = "false";
+      image.dataset.slide = "";
     });
     imagesArr[slider.currentImage].dataset.active = "true";
+    imagesArr[slider.currentImage].dataset.slide = "prev";
 
     const imageDots = sliderContainer.querySelectorAll(".imageDot");
     const imageDotsArr = Array.from(imageDots);
@@ -36,6 +40,9 @@ export function createSliderDom(slider) {
       dot.dataset.active = "false";
     });
     imageDotsArr[slider.currentImage].dataset.active = "true";
+
+    clearInterval(interval);
+    interval = setInterval(nextImage, 5000, slider);
   });
 
   const sliderNav = document.createElement("div");
@@ -76,14 +83,23 @@ export function addImageToSliderDom(slider, src) {
   imageDot.classList.add("imageDot");
   imageDot.dataset.active = slider.images[imageIndex].active;
   imageDot.addEventListener("click", () => {
+    const saveIndex = slider.currentImage;
     slider.activeImage(imageIndex);
 
     const images = sliderDom.querySelectorAll(".imageDiv");
     const imagesArr = Array.from(images);
     imagesArr.forEach((image) => {
       image.dataset.active = "false";
+      image.dataset.slide = "";
     });
     imagesArr[slider.currentImage].dataset.active = "true";
+    if (saveIndex > slider.currentImage) {
+      imagesArr[slider.currentImage].dataset.slide = "prev";
+    } else if (saveIndex === slider.currentImage) {
+      imagesArr[slider.currentImage].dataset.slide = "same";
+    } else if (saveIndex < slider.currentImage) {
+      imagesArr[slider.currentImage].dataset.slide = "next";
+    }
 
     const imageDots = sliderDom.querySelectorAll(".imageDot");
     const imageDotsArr = Array.from(imageDots);
@@ -91,6 +107,9 @@ export function addImageToSliderDom(slider, src) {
       dot.dataset.active = "false";
     });
     imageDotsArr[slider.currentImage].dataset.active = "true";
+
+    clearInterval(interval);
+    interval = setInterval(nextImage, 5000, slider);
   });
 
   return sliderNav.appendChild(imageDot);

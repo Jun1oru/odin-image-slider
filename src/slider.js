@@ -104,8 +104,10 @@ export function nextImage(slider) {
   const imagesArr = Array.from(images);
   imagesArr.forEach((image) => {
     image.dataset.active = "false";
+    image.dataset.slide = "";
   });
   imagesArr[slider.currentImage].dataset.active = "true";
+  imagesArr[slider.currentImage].dataset.slide = "next";
 
   const imageDots = sliderContainer.querySelectorAll(".imageDot");
   const imageDotsArr = Array.from(imageDots);
